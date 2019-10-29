@@ -11,6 +11,21 @@ ground.src = "img/ground.png";
 const foodImg = new Image();
 foodImg.src = "img/food.png";
 
+// load audio files
+let dead = new Audio();
+let eat = new Audio();
+let up = new Audio();
+let right = new Audio();
+let left = new Audio();
+let down = new Audio();
+
+dead.src = "audio/dead.mp3";
+eat.src = "audio/eat.mp3";
+up.src = "audio/up.mp3";
+right.src = "audio/right.mp3";
+left.src = "audio/left.mp3";
+down.src = "audio/down.mp3";
+
 // create the snake
 let snake  = [];
 
@@ -42,7 +57,7 @@ function direction(event) {
     }
     else if (key == 38 && d != "DOWN") {
         d = "UP";
-        up.play();
+        up.play()
     }
     else if (key == 39 && d != "LEFT") {
         d = "RIGHT";
@@ -83,15 +98,15 @@ function draw() {
     let snakeY = snake[0].y;
 
     // which direction
-    if ( d = "LEFT") snakeX -= box;
-    if ( d = "UP") snakeY -= box;
-    if ( d = "RIGHT") snakeX += box;
-    if ( d = "DOWN") snakeY += box;
+    if ( d == "LEFT") snakeX -= box;
+    if ( d == "UP") snakeY -= box;
+    if ( d == "RIGHT") snakeX += box;
+    if ( d == "DOWN") snakeY += box;
 
     // if the snake eats the food
     if (snakeX == food.x && snakeY == food.y) {
         score++;
-        
+
         eat.play();
 
         food = {
