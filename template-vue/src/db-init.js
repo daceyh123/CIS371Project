@@ -4,13 +4,14 @@ import "firebase/auth";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-    apiKey: "AIzaSyB2dKOd7KLsmhCF9EXKPSiz5v8ptX00C6w",
-    authDomain: "cis371-32cbb.firebaseapp.com",
-    databaseURL: "https://cis371-32cbb.firebaseio.com",
-    projectId: "cis371-32cbb",
-    storageBucket: "",
-    messagingSenderId: "676695324661",
-    appId: "1:676695324661:web:266686822b22bc032b12bc"
+    apiKey: "AIzaSyARbDbwYcXPgNxULgS-0HrlYt2kfdxWMnk",
+    authDomain: "arcade-1e9b4.firebaseapp.com",
+    databaseURL: "https://arcade-1e9b4.firebaseio.com",
+    projectId: "arcade-1e9b4",
+    storageBucket: "arcade-1e9b4.appspot.com",
+    messagingSenderId: "93706596933",
+    appId: "1:93706596933:web:1403e852f49b367ca2a92c",
+    measurementId: "G-PT47DF1YXR"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
