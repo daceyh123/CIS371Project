@@ -1,28 +1,17 @@
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-dialog v-model="dialog">
-        <template v-slot:activator="{ on }">
-          <v-btn color="primary" dark v-on="on" v-show="isLoggedIn === true" @click="signOutBtn" v-model="signOut">Sign Out</v-btn>
-        </template>
-        <v-card>
-          <v-card-title class="headline">User Sign Out</v-card-title>
-          <v-card-text>You have successfully been signed out</v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="green darken-1" text @click="dialog = false">Close</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog> 
-    </v-app-bar>
-
     <v-content>
-      <router-view />
+      <div id="base">
+        <body id="borderT">The Dundies Arcade</body>
+        <body id="borderR"></body>
+        <v-layout row wrap align-center space-around>
+          <v-flex>
+            <router-view id="screen"/>
+          </v-flex>
+        </v-layout>
+        <body id="borderL"></body>
+        <body id="borderB"></body>
+      </div>
     </v-content>
   </v-app>
 </template>
@@ -41,7 +30,6 @@ export default {
   methods: {
     signOutBtn(){
       AppAUTH.signOut().then(() => {
-        
       this.$router.back(); 
       });
     }
@@ -53,3 +41,43 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+@font-face {
+  font-family: "Astron";
+  src: url("./assets/fonts/Pixellari.ttf");
+  font-size: 50em;
+}
+
+#base{
+  min-width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: auto 87vh auto;
+  grid-template-rows: 8vh 87vh 5vh;
+
+  font-family: "Astron";
+}
+#screen{
+  grid-area: 2 / 2 / 2 / 2;
+  padding: 10vh;
+}
+#borderT{
+  grid-area: 1 / 1 / 1 / 4;
+  font-size: 250%;
+  text-align: center;
+  background-color:rgb(22, 22, 22);
+}
+#borderR{
+  grid-area: 2 / 3 / 2 / 3;
+  background-color:rgb(22, 22, 22);
+}
+#borderL{
+  grid-area: 2 / 1 / 2 / 1;
+  background-color:rgb(22, 22, 22);
+}
+#borderB{
+  grid-area: 3 / 1 / 3 / 4;
+  background-color:rgb(22, 22, 22);
+}
+</style>

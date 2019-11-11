@@ -65,7 +65,9 @@ import { AppAUTH } from "../db-init.js";
 </script>
 <style>
 #signin {
-  width: 50vw;
-  /* other styles go here */
+  width: 40vh;
+}
+.v-text-field{
+    font-size:150%;
 }
 </style>
