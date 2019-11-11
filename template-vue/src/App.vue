@@ -10,7 +10,9 @@
           </v-flex>
         </v-layout>
         <body id="borderL"></body>
-        <body id="borderB"></body>
+        <body id="borderB">
+          <v-btn dark color="red darken-2" @click="signOutBtn" v-show="isLoggedIn === true">Sign out</v-btn>
+        </body>
       </div>
     </v-content>
   </v-app>
