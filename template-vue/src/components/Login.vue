@@ -4,19 +4,21 @@
         <v-text-field type="password" label="Password" v-model="userPassword"></v-text-field>
         <v-container v-show="isLoggedIn === false">
         <v-row justify="end">        
-        <v-btn dark color="red darken-2" @click="doSignUp">Sign Up</v-btn>
+            <v-btn dark color="red darken-2" @click="doSignUp">Sign Up</v-btn>
                 <v-snackbar v-model="snackbar" :timeout="timeout">
                     {{ text }}
                     <v-btn color="red" text  @click="doSignUp; snackbar = false">
                     Close
                     </v-btn>
                 </v-snackbar>
-                <v-btn @click="doSignIn">Sign In</v-btn>
+            <v-btn @click="doSignIn">Sign In</v-btn>
         </v-row>
-
-        <v-btn dark color="blue darken-2" @click="socialButton">
-                <p>Sign in with Google</p>
-            </v-btn>
+        <br>
+            <v-row justify ="end">
+                <v-btn dark color="blue darken-2" @click="googleSignIn" v-model="googleBtn">
+                        <p>Sign in with Google</p>
+                    </v-btn>
+            </v-row>
 
         </v-container>
     </form>
@@ -62,7 +64,7 @@ import firebase from 'firebase';
                 });
             },
 
-            socialButton() {
+            googleSignIn() {
                 const provider = new firebase.auth.GoogleAuthProvider();
 
                 firebase.auth().signInWithPopup(provider).then(() => {
@@ -90,8 +92,7 @@ import firebase from 'firebase';
         font-size: 150%;
     }
 
-    #socialButton {
-        float: right;
+    #gBtnTxt {
         text-align: center;
     }
 </style>
