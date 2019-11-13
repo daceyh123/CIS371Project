@@ -13,11 +13,18 @@
                 </v-snackbar>
                 <v-btn @click="doSignIn">Sign In</v-btn>
         </v-row>
+
+        <v-btn dark color="blue darken-2" v-model="socialButton">
+                <p>Sign in with Google</p>
+            </v-btn>
+
         </v-container>
     </form>
 </template>
 <script>
 import { AppAUTH } from "../db-init.js";
+import firebase from 'firebase';
+
     export default {
         data: function() {
             return {
@@ -53,7 +60,17 @@ import { AppAUTH } from "../db-init.js";
                 this.snackbar=true;
                 this.text="Must have an active account to login."
                 });
-            }
+            },
+
+            socialButton() {
+                const provider = new.firebase.auth.GoogleAuthProvider();
+
+                firebase.auth().signInWithPopup(provider).then((result) => {
+                    this.$router.replaced('home');
+                }).catch((err) => {
+                    alert('Oops. ' + err.message)
+                });
+            },
 
         },
         mounted() {
@@ -63,11 +80,18 @@ import { AppAUTH } from "../db-init.js";
         }
     };
 </script>
+
 <style>
-#signin {
-  width: 40vh;
-}
-.v-text-field{
-    font-size:150%;
-}
+    #signin {
+        width: 40vh;
+    }
+
+    .v-text-field label {
+        font-size: 150%;
+    }
+
+    #socialButton {
+        float: right;
+        text-align: center;
+    }
 </style>
