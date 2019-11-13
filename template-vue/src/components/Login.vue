@@ -15,7 +15,7 @@
         </v-row>
         <br>
             <v-row justify ="end">
-                <v-btn dark color="blue darken-2" @click="googleSignIn" v-model="googleBtn">
+                <v-btn dark color="blue darken-2" @click="googleSignIn">
                         <p>Sign in with Google</p>
                     </v-btn>
             </v-row>
@@ -90,9 +90,5 @@ import firebase from 'firebase';
 
     .v-text-field label {
         font-size: 150%;
-    }
-
-    #gBtnTxt {
-        text-align: center;
     }
 </style>
