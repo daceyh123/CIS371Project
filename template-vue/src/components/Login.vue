@@ -14,7 +14,7 @@
                 <v-btn @click="doSignIn">Sign In</v-btn>
         </v-row>
 
-        <v-btn dark color="blue darken-2" v-model="socialButton">
+        <v-btn dark color="blue darken-2" @click="socialButton">
                 <p>Sign in with Google</p>
             </v-btn>
 
@@ -63,14 +63,14 @@ import firebase from 'firebase';
             },
 
             socialButton() {
-                const provider = new.firebase.auth.GoogleAuthProvider();
+                const provider = new firebase.auth.GoogleAuthProvider();
 
-                firebase.auth().signInWithPopup(provider).then((result) => {
-                    this.$router.replaced('home');
+                firebase.auth().signInWithPopup(provider).then(() => {
+                    this.$router.push({ path: "/App" });
                 }).catch((err) => {
                     alert('Oops. ' + err.message)
                 });
-            },
+            }
 
         },
         mounted() {
