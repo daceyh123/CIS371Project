@@ -4,20 +4,29 @@
         <v-text-field type="password" label="Password" v-model="userPassword"></v-text-field>
         <v-container v-show="isLoggedIn === false">
         <v-row justify="end">        
-        <v-btn dark color="red darken-2" @click="doSignUp">Sign Up</v-btn>
+            <v-btn dark color="red darken-2" @click="doSignUp">Sign Up</v-btn>
                 <v-snackbar v-model="snackbar" :timeout="timeout">
                     {{ text }}
                     <v-btn color="red" text  @click="doSignUp; snackbar = false">
                     Close
                     </v-btn>
                 </v-snackbar>
-                <v-btn @click="doSignIn">Sign In</v-btn>
+            <v-btn @click="doSignIn">Sign In</v-btn>
         </v-row>
+        <br>
+            <v-row justify ="end">
+                <v-btn dark color="blue darken-2" @click="googleSignIn">
+                        <p>Sign in with Google</p>
+                    </v-btn>
+            </v-row>
+
         </v-container>
     </form>
 </template>
 <script>
 import { AppAUTH } from "../db-init.js";
+import firebase from 'firebase';
+
     export default {
         data: function() {
             return {
@@ -53,6 +62,16 @@ import { AppAUTH } from "../db-init.js";
                 this.snackbar=true;
                 this.text="Must have an active account to login."
                 });
+            },
+
+            googleSignIn() {
+                const provider = new firebase.auth.GoogleAuthProvider();
+
+                firebase.auth().signInWithPopup(provider).then(() => {
+                    this.$router.push({ path: "/App" });
+                }).catch((err) => {
+                    alert('Oops. ' + err.message)
+                });
             }
 
         },
@@ -63,11 +82,13 @@ import { AppAUTH } from "../db-init.js";
         }
     };
 </script>
+
 <style>
-#signin {
-  width: 40vh;
-}
-.v-text-field{
-    font-size:150%;
-}
+    #signin {
+        width: 40vh;
+    }
+
+    .v-text-field label {
+        font-size: 150%;
+    }
 </style>
