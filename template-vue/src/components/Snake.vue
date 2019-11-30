@@ -3,7 +3,8 @@
 </template>
 
 <script>
-
+import { AppDB } from "../db-init.js";
+import { AppAUTH } from "../db-init.js";
     // load images
     const ground = new Image();
         ground.src = require('../assets/img/ground.png');
@@ -140,6 +141,10 @@
             if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead,snake)) {
                 clearInterval(game);
                 dead.play();
+                var user = AppAUTH.currentUser;
+                AppDB.ref("Highscore")
+                .push()
+                .set({Game: "Snake", User: user.email, Score: score});
             }
 
             snake.unshift(newHead);

@@ -2,7 +2,8 @@
     <canvas ref="asteroid" id="gameCanvas" width="608" height="570"></canvas>
 </template>
 <script>
-
+import { AppDB } from "../db-init.js";
+import { AppAUTH } from "../db-init.js";
 export default {
     data: () => ({
     }),
@@ -148,6 +149,10 @@ export default {
             ship.dead = true;
             text = "Game Over";
             textAlpha = 1.0;
+            var user = AppAUTH.currentUser;
+            AppDB.ref("Highscore")
+            .push()
+            .set({Game: "Asteroids", User: user.email, Score: score});
         }
 
         function keyDown(/** @type {KeyboardEvent} */ ev) {
