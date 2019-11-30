@@ -6,9 +6,8 @@ export default {
     data: () => ({
     }),
     mounted() {
-            /** @type {HTMLCanvasElement} */
-        var canv = this.$refs.canvas;
-        var ctx = canv.getContext("2d");
+        var cnvs = this.$refs.canvas;
+        var contx = cnvs.getContext("2d");
 
         var bat = {
                 imageUp: new Image(),
