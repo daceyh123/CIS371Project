@@ -2,6 +2,8 @@
     <canvas ref="canvasFlap" id="gameCanvas" width="512px" height ="512px"></canvas>
 </template>
 <script>
+//import { AppDB } from "../db-init.js";
+//import { AppAUTH } from "../db-init.js";
 export default {
     data: () => ({
     }),
@@ -269,7 +271,7 @@ export default {
 
     function DrawBat(){
         if(!bat.batUp) contx.drawImage(bat.imageDown, bat.x, bat.y);
-        else alert("batup");//contx.drawImage(bat.imageUp, bat.x, bat.y);
+        else contx.drawImage(bat.imageUp, bat.x, bat.y);
         // contx.drawImage(bat.imageUp, bat.x, bat.y);
     }
 

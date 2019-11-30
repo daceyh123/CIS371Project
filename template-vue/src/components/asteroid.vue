@@ -149,10 +149,12 @@ export default {
             ship.dead = true;
             text = "Game Over";
             textAlpha = 1.0;
+            if(score > 0){
             var user = AppAUTH.currentUser;
             AppDB.ref("Highscore")
             .push()
             .set({Game: "Asteroids", User: user.email, Score: score});
+            }
         }
 
         function keyDown(/** @type {KeyboardEvent} */ ev) {

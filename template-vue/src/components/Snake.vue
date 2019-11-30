@@ -141,10 +141,12 @@ import { AppAUTH } from "../db-init.js";
             if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead,snake)) {
                 clearInterval(game);
                 dead.play();
+                if(score > 0){
                 var user = AppAUTH.currentUser;
                 AppDB.ref("Highscore")
                 .push()
                 .set({Game: "Snake", User: user.email, Score: score});
+                }
             }
 
             snake.unshift(newHead);
