@@ -11,7 +11,8 @@
         </v-layout>
         <body id="borderL"></body>
         <body id="borderB">
-          <v-btn dark color="red darken-2" @click="signOutBtn" v-show="isLoggedIn === true">Sign out</v-btn>
+          <v-btn id="sign" dark color="red darken-2" @click="signOutBtn" v-show="isLoggedIn === true">Sign out</v-btn>
+          <v-btn id="main" dark color="primary" @click="mainBtn" v-show="isLoggedIn === true">Main Menu</v-btn>
         </body>
       </div>
     </v-content>
@@ -32,8 +33,11 @@ export default {
   methods: {
     signOutBtn(){
       AppAUTH.signOut().then(() => {
-      this.$router.back(); 
+      this.$router.push({ path: "/" }); 
       });
+    },
+    mainBtn(){
+      this.$router.push({ path: "/main" }); 
     }
   },
   mounted() {
@@ -81,5 +85,15 @@ export default {
 #borderB{
   grid-area: 3 / 1 / 3 / 4;
   background-color:rgb(22, 22, 22);
+}
+#main{
+  float: left;
+}
+#sign{
+  float: right;
+}
+#borderB{
+  padding-left: 10vh;
+  padding-right: 10vh;
 }
 </style>

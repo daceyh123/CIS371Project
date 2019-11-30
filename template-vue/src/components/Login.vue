@@ -43,7 +43,7 @@ import firebase from 'firebase';
                 AppAUTH.createUserWithEmailAndPassword(this.userEmail, this.userPassword)
                 .then((u) => {
                 alert("User created with UID " + u.user.uid);
-                this.$router.push({path:"/budget"});
+                this.$router.push({path:"/main"});
                 })
                 .catch(() => {
                 //alert("Error " + err);
@@ -55,7 +55,7 @@ import firebase from 'firebase';
                 AppAUTH.signInWithEmailAndPassword(this.userEmail, this.userPassword)
                 .then((u) => {
                 alert("You logged in as " + u.user.email);
-                this.$router.push({ path: "/budget" });
+                this.$router.push({ path: "/main" });
                 })
                 .catch(() => {
                 //alert("Error " + err);
@@ -68,7 +68,7 @@ import firebase from 'firebase';
                 const provider = new firebase.auth.GoogleAuthProvider();
 
                 firebase.auth().signInWithPopup(provider).then(() => {
-                    this.$router.push({ path: "/App" });
+                    this.$router.push({ path: "/main" });
                 }).catch((err) => {
                     alert('Oops. ' + err.message)
                 });
