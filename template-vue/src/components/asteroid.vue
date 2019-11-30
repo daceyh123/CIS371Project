@@ -1,5 +1,5 @@
 <template>
-    <canvas ref="asteroid" id="gameCanvas" width="760" height="570"></canvas>
+    <canvas ref="asteroid" id="gameCanvas" width="608" height="570"></canvas>
 </template>
 <script>
 
@@ -666,5 +666,14 @@ export default {
     },
     methods: {
     }
-  }
+}
 </script>
+
+<style>
+    canvas {
+        display: grid;
+        height: 87vh;
+        margin: 0;
+        place-items: center center;
+    }
+</style>

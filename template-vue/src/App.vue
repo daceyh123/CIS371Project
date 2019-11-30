@@ -62,7 +62,7 @@ export default {
 }
 #screen{
   grid-area: 2 / 2 / 2 / 2;
-  padding: 10vh;
+  padding: 5vh;
 }
 #borderT{
   grid-area: 1 / 1 / 1 / 4;
