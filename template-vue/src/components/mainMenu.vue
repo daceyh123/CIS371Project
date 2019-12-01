@@ -37,7 +37,7 @@ export default {
 <style scoped>
 body {
   display: flex;
-  min-height: 100vh;
+  min-height: 87vh;
   flex-direction: column;
   margin: 0;
 }
