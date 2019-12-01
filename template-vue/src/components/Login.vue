@@ -42,6 +42,7 @@ import firebase from 'firebase';
             doSignUp() {
                 AppAUTH.createUserWithEmailAndPassword(this.userEmail, this.userPassword)
                 .then((u) => {
+                    
                 alert("User created with UID " + u.user.uid);
                 this.$router.push({path:"/main"});
                 })
@@ -72,7 +73,7 @@ import firebase from 'firebase';
                 }).catch((err) => {
                     alert('Oops. ' + err.message)
                 });
-            }
+            },
 
         },
         mounted() {
