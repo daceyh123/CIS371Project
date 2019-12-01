@@ -4,10 +4,32 @@
     <v-btn dark color="success" id="pro" @click="proBtn">Profile</v-btn>
     <v-btn dark color="accent" id="lea" @click="leaBtn">Leaderboard</v-btn>
   </header>
+
   <div id="games">
-    <v-btn id="ast" @click="astBtn">Asteroids</v-btn>
-    <v-btn id="sna" @click="snaBtn">Snake</v-btn>
-    <v-btn id="fla" @click="flaBtn">Flappy Bat</v-btn>
+    <v-row>
+      <v-col>
+        <img src="../components/img/asteroids.jpg" height="90px" width="90px"/>
+      </v-col>>
+      <v-col>
+        <img src="../components/img/snake.png" height="90px" width="90px"/>
+      </v-col>
+      <v-col>
+        <img src="../components/img/flappyBat.png" height="90px" width="90px"/>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-btn id="ast" @click="astBtn">Asteroids</v-btn>
+      </v-col>
+      <v-col>
+        <v-btn id="sna" @click="snaBtn">Snake</v-btn>
+      </v-col>
+      <v-col>
+        <v-btn id="fla" @click="flaBtn">Flappy Bat</v-btn>
+      </v-col>
+    </v-row>
+
   </div>
 </body>
 </template>
@@ -47,6 +69,7 @@ body {
   float: center;
   flex-direction: row;
   justify-content: space-around;
+  text-align: center;
 }
 header {
   height: 30vh;
