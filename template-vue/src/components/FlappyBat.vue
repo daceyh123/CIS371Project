@@ -2,8 +2,6 @@
     <canvas ref="canvasFlap" id="gameCanvas" width="512px" height ="512px"></canvas>
 </template>
 <script>
-//import { AppDB } from "../db-init.js";
-//import { AppAUTH } from "../db-init.js";
 export default {
     data: () => ({
     }),
@@ -55,8 +53,8 @@ export default {
     var constant;
     var gravity = 1.5;
     var score = 0;
-    var gameInProgress = true;
-
+    var gameInProgress = false;
+    var keypressed = false;
 
     var fly = new Audio();
     var scor = new Audio();
@@ -68,17 +66,20 @@ export default {
         y:0
     };
 
-    InstantiateVariables();
-
     function InstantiateVariables()
     {
-        var pipe = [];
+        for(var i = 0; i< pipe.length; i++)
+        {
+            pipe[i].x-=1000;
+        }
+        DrawPipes(); 
 
         pipe[0] = {
             x:cnvs.width,
             y:0
         };
 
+        bat.batUp=true;
         bat.velocity = 0;
         bat.x = 10;
         bat.y = 150;
@@ -110,51 +111,36 @@ export default {
 
     //Key Listener and Event
     document.addEventListener("keydown", moveUp);
+    document.addEventListener("keyup", function (){keypressed = false})
+
     function moveUp(){
         if(gameInProgress){
-            bat.velocity = bat.velocityJump;
-            fly.currentTime = 0;
-            fly.play(); 
+            if(keypressed == false) {
+                bat.velocity = bat.velocityJump;
+                fly.currentTime = 0;
+                fly.play(); 
+                keypressed = true;
+            }
         }
         else {
             gameInProgress = true;
-            GameLoop();
             bat.velocity = bat.velocityJump;
             fly.currentTime = 0;
             fly.play(); 
         }
     }
 
-    //CallGame();
-    //GameLoop();
     setInterval(GameLoop, 20);
 
-    // function CallGame(){
-    //     if(!gameInProgress)
-    //     {
-    //         InstantiateVariables();
-    //     }
-    //     else{
-    //         GameLoop();
-    //     }
-    // }
-
     function GameLoop(){
-        // while(gameInProgress)
-        // {
-            Update();
-            Draw(); 
-            //if(!gameInProgress) break;
-        //}
-        //CallGame();
-        //requestAnimationFrame(GameLoop);
+        if(gameInProgress) Update();
+        Draw(); 
     }
 
 
     function Update(){
         UpdateBG();
         UpdateFG();
-        UpdateBatAnimation();
         UpdatePipes();
         UpdateCollision();
         UpdateBat();
@@ -224,8 +210,9 @@ export default {
         {
             //Checks For Fail Status
             if( bat.x + 40 >= pipe[i].x && bat.x <= pipe[i].x + pipeNorth.width && (bat.y <= pipe[i].y + pipeNorth.height || bat.y + 40 >= pipe[i].y+constant) || bat.y + 40 >=  cnvs.height - ground.one.height){
-                    //gameInProgress = false;
-                    location.reload();
+                    gameInProgress = false;
+                    GameOver();
+                    InstantiateVariables();
             }
         }
     }
@@ -234,8 +221,7 @@ export default {
         bat.velocity *= .7;
         bat.y += bat.velocity;
         bat.y += gravity;
-        if(bat.velocity < 0) bat.batUp= false;
-        else bat.batUp = true;
+        UpdateBatAnimation();
     }
 
     function DrawScore(){
@@ -275,14 +261,10 @@ export default {
         contx.drawImage(ground.two, ground.twox, cnvs.height - ground.two.height);
     }
 
-    //Useability Functions
-
-    //x and y are the top corner of the image
-//     function drawSprite(image, x, y, scale, rotation){
-//         contx.setTransform(scale, 0, 0, scale, x, y); // sets scale and origin
-//         contx.rotate(rotation);
-//         contx.drawImage(image, -image.width / 2, -image.height / 2);
-// } 
+    //GAME OVER HIGH SCORE CODE
+    function GameOver() {
+        //********HUNTER PLACE CODE HERE****************************************************************************************************************************** */
+    }
     },
     methods :{
         
