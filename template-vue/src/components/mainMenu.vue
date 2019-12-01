@@ -9,7 +9,7 @@
     <v-row>
       <v-col>
         <img src="../components/img/asteroids.jpg" height="90px" width="90px"/>
-      </v-col>>
+      </v-col>
       <v-col>
         <img src="../components/img/snake.png" height="90px" width="90px"/>
       </v-col>
@@ -77,7 +77,7 @@ header {
   padding-right: 2vh;
 }
 #ast {
-  float: left;
+  float: center;
   font-size: 200%;
   padding-top: 5%;
   padding-bottom: 8%;
@@ -89,7 +89,7 @@ header {
   padding-bottom: 8%;
 }
 #fla {
-  float: right;
+  float: center;
   font-size: 200%;
   padding-top: 5%;
   padding-bottom: 8%;
