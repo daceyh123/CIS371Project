@@ -1,39 +1,49 @@
 <template>
-    <body>
-        <span id="email">Email: {{this.user.email}}</span>
-        <span id="name">Name: {{this.user.userName}}</span>
-        <image id="pic"></image>
-    </body>
+<body>
+  <span id="email">Email: {{this.user.email}}</span>
+  <span id="name">Name: {{this.user.displayName}}</span>
+  <img v-bind:src="user.photoURL" height="360px" width="360px" ref="pic" />
+</body>
 </template>
 
 <script>
 import { AppAUTH } from "../db-init.js";
-export default {
-    data: function() {
-        return {
-         user: AppAUTH.currentUser
-        };
-    }, 
-    mounted(){
-        if(this.user.photoURL == null && this.user.userName == null) {
-            AppAUTH.currentUser.updateProfile({
-                    displayName: "Dwight Schrute",
-                    photoURL: "https://theofficeanalytics.files.wordpress.com/2017/11/dwight.jpeg?w=1200"
-                }).then(function() {
 
-                }, function(err) {
-                    // An error happened.
-                    alert("Error " + err);
-                });
-        }
-        document.getElementById("pic").src = this.user.photoURL;
+export default {
+  data: function() {
+    return {
+      user: [],
+      componentKey: 0
+    };
+  },
+
+  mounted() {
+    //this.user.push(AppAUTH.currentUser);
+    let userinfo = AppAUTH.currentUser;
+    this.user = userinfo;
+    //this.pic = userinfo.photoURL;
+    if (this.user.displayName == null) {
+      AppAUTH.currentUser
+        .updateProfile({
+          displayName: this.user.email,
+          photoURL:
+            "https://www.scirra.com/images/articles/windows-8-user-account.jpg"
+        })
+        .then(
+          function() {},
+          function(err) {
+            // An error happened.
+            alert("Error " + err);
+          }
+        );
     }
-}
+  }
+};
 </script>
 
 <style scoped>
-body{
-    display: flex;
-    flex-direction: column;
+body {
+  display: flex;
+  flex-direction: column;
 }
 </style>
