@@ -295,9 +295,9 @@ export default {
             this.play = function() {
                 if (MUSIC_ON) {
                     if (this.low) {
-                        this.soundLow.play();
+                        //this.soundLow.play();
                     } else {
-                        this.soundHigh.play();
+                        //this.soundHigh.play();
                     }
                     this.low = !this.low;
                 }

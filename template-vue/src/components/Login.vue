@@ -42,16 +42,8 @@ import firebase from 'firebase';
             doSignUp() {
                 AppAUTH.createUserWithEmailAndPassword(this.userEmail, this.userPassword)
                 .then((u) => {
+                    
                 alert("User created with UID " + u.user.uid);
-                AppAUTH.currentUser.updateProfile({
-                    displayName: "Dwight Schrute",
-                    photoURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR9Lfpqjc8bOhAGfYrBgzJRPhumgNzwPy_VmBhYA21GwgVTtA-Eg&s"
-                }).then(function() {
-
-                }, function(err) {
-                    // An error happened.
-                    alert("Error " + err);
-                });
                 this.$router.push({path:"/main"});
                 })
                 .catch(() => {

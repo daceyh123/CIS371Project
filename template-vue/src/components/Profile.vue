@@ -15,7 +15,17 @@ export default {
         };
     }, 
     mounted(){
-        if(this.user.photoURL == null) alert("Did not find Picture");
+        if(this.user.photoURL == null && this.user.userName == null) {
+            AppAUTH.currentUser.updateProfile({
+                    displayName: "Dwight Schrute",
+                    photoURL: "https://theofficeanalytics.files.wordpress.com/2017/11/dwight.jpeg?w=1200"
+                }).then(function() {
+
+                }, function(err) {
+                    // An error happened.
+                    alert("Error " + err);
+                });
+        }
         document.getElementById("pic").src = this.user.photoURL;
     }
 }
