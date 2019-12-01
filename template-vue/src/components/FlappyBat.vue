@@ -2,6 +2,8 @@
     <canvas ref="canvasFlap" id="gameCanvas" width="512px" height ="512px"></canvas>
 </template>
 <script>
+//import { AppDB } from "../db-init.js";
+//import { AppAUTH } from "../db-init.js";
 export default {
     data: () => ({
     }),
