@@ -1,5 +1,6 @@
 <template>
     <body>
+        <v-btn @click=addInfo>Add Info</v-btn>
         <span id="email">Email: {{this.user.email}}</span>
         <span id="name">Name: {{this.user.userName}}</span>
         <image id="pic"></image>
@@ -15,7 +16,10 @@ export default {
         };
     }, 
     mounted(){
-        if(this.user.photoURL == null && this.user.userName == null) {
+        
+    },
+    methods:{
+        addInfo(){
             AppAUTH.currentUser.updateProfile({
                     displayName: "Dwight Schrute",
                     photoURL: "https://theofficeanalytics.files.wordpress.com/2017/11/dwight.jpeg?w=1200"
@@ -25,8 +29,8 @@ export default {
                     // An error happened.
                     alert("Error " + err);
                 });
+            document.getElementById("pic").src = this.user.photoURL;
         }
-        document.getElementById("pic").src = this.user.photoURL;
     }
 }
 </script>
