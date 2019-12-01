@@ -152,7 +152,6 @@ export default {
     function Update(){
         UpdateBG();
         UpdateFG();
-        UpdateBatRotation();
         UpdateBatAnimation();
         UpdatePipes();
         UpdateCollision();
@@ -188,10 +187,6 @@ export default {
         ground.twox--;
         if(ground.onex <= -512) ground.onex = 511;
         if(ground.twox <= -512) ground.twox = 511;
-    }
-
-    function UpdateBatRotation(){
-        
     }
 
     function UpdateBatAnimation(){
@@ -242,7 +237,7 @@ export default {
     }
 
     function DrawScore(){
-        contx.fillStyle = "#000";
+        contx.fillStyle = "#fff";
         contx.font = "20px Veranda";
         contx.fillText("Score: " + score, 10, cnvs.height - 20);
     }
@@ -269,7 +264,7 @@ export default {
 
     function DrawBat(){
         if(!bat.batUp) contx.drawImage(bat.imageDown, bat.x, bat.y);
-        else alert("batup");//contx.drawImage(bat.imageUp, bat.x, bat.y);
+        else contx.drawImage(bat.imageUp, bat.x, bat.y);
         // contx.drawImage(bat.imageUp, bat.x, bat.y);
     }
 
