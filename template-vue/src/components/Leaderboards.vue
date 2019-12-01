@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div>
+  <div class="wrapper">
+    <div class="one">
       <h1>Snake</h1>
       <v-simple-table id="scoretable">
         <thead>
@@ -19,7 +19,7 @@
         </tbody>
       </v-simple-table>
     </div>
-    <div>
+    <div class="two">
       <h1>Asteroids</h1>
       <v-simple-table id="scoretable">
         <thead>
@@ -38,7 +38,7 @@
         </tbody>
       </v-simple-table>
     </div>
-    <div>
+    <div class="three">
       <h1>Flappy Bat</h1>
       <v-simple-table id="scoretable">
         <thead>
@@ -48,6 +48,13 @@
             <th>Username</th>
           </tr>
         </thead>
+        <tbody>
+          <tr v-for="(flapBatScores,pos) in flapBatScores" :key="pos">
+            <td v-bind:ref="pos">{{pos +1 }}</td>
+            <td>{{flapBatScores.Score}}</td>
+            <td>{{flapBatScores.User}}</td>
+          </tr>
+        </tbody>
       </v-simple-table>
     </div>
   </div>
@@ -74,12 +81,17 @@ export default {
       if (item.Game == "Snake") {
         this.snakeScores.push({ ...item });
         this.snakeScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-        this.snakeScores = this.snakeScores.slice(0, 3);
+        this.snakeScores = this.snakeScores.slice(0, 5);
       }
       if (item.Game == "Asteroids") {
         this.asteroidScores.push({ ...item });
         this.asteroidScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-        this.asteroidScores = this.asteroidScores.slice(0, 3);
+        this.asteroidScores = this.asteroidScores.slice(0, 5);
+      }
+      if (item.Game == "FlappyBat") {
+        this.flapBatScores.push({ ...item });
+        this.flapBatScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
+        this.flapBatScores = this.flapBatScores.slice(0, 5);
       }
     }
     // getRank() {
@@ -99,6 +111,12 @@ export default {
 };
 </script>
 <style>
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
 #snake {
   background-image: url("../assets/img/ground.png");
   background-size: 100%;
