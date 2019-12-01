@@ -2,6 +2,7 @@
 <body>
   <header>
     <v-btn dark color="success" id="pro" @click="proBtn">Profile</v-btn>
+    <v-btn dark color="accent" id="lea" @click="leaBtn">Leaderboard</v-btn>
   </header>
   <div id="games">
     <v-btn id="ast" @click="astBtn">Asteroids</v-btn>
@@ -16,6 +17,9 @@ export default {
   methods: {
     proBtn() {
       this.$router.push({ path: "/profile" });
+    },
+    leaBtn() {
+      this.$router.push({ path: "/leaderboard" });
     },
     astBtn() {
       this.$router.push({ path: "/asteroid" });
@@ -47,6 +51,7 @@ body {
 header {
   height: 30vh;
   padding-left: 2vh;
+  padding-right: 2vh;
 }
 #ast {
   float: left;
@@ -65,5 +70,8 @@ header {
   font-size: 200%;
   padding-top: 5%;
   padding-bottom: 8%;
+}
+#lea{
+    float:right;
 }
 </style>
