@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="one">
-      <h1>Snake</h1>
+      <h3>Snake</h3>
       <v-simple-table id="scoretable">
         <thead>
           <tr id="snake">
@@ -14,13 +14,13 @@
           <tr v-for="(snakeScores,pos) in snakeScores" :key="pos">
             <td v-bind:ref="pos">{{pos +1 }}</td>
             <td>{{snakeScores.Score}}</td>
-            <td>{{snakeScores.User}}</td>
+            <td>{{snakeScores.User.substring(0, snakeScores.User.indexOf('@'))}}</td>
           </tr>
         </tbody>
       </v-simple-table>
     </div>
     <div class="two">
-      <h1>Asteroids</h1>
+      <h3>Asteroids</h3>
       <v-simple-table id="scoretable">
         <thead>
           <tr id="asteroids">
@@ -33,13 +33,13 @@
           <tr v-for="(asteroidScores,pos) in asteroidScores" :key="pos">
             <td v-bind:ref="pos">{{pos +1 }}</td>
             <td>{{asteroidScores.Score}}</td>
-            <td>{{asteroidScores.User}}</td>
+            <td>{{asteroidScores.User.substring(0, asteroidScores.User.indexOf('@'))}}</td>
           </tr>
         </tbody>
       </v-simple-table>
     </div>
     <div class="three">
-      <h1>Flappy Bat</h1>
+      <h3>Flappy Bat</h3>
       <v-simple-table id="scoretable">
         <thead>
           <tr id="flap">
@@ -52,7 +52,7 @@
           <tr v-for="(flapBatScores,pos) in flapBatScores" :key="pos">
             <td v-bind:ref="pos">{{pos +1 }}</td>
             <td>{{flapBatScores.Score}}</td>
-            <td>{{flapBatScores.User}}</td>
+            <td>{{flapBatScores.User.substring(0, flapBatScores.User.indexOf('@'))}}</td>
           </tr>
         </tbody>
       </v-simple-table>
@@ -113,9 +113,20 @@ export default {
 <style>
 .wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: auto;
+}
+.one {
+  float: left;
+  padding: 5px;
+}
+.two {
+  padding: 5px;
+}
+.three {
+  grid-column: 1/3;
+  grid-row: 2;
 }
 #snake {
   background-image: url("../assets/img/ground.png");
