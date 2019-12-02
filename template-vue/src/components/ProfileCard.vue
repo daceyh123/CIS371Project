@@ -49,7 +49,4 @@
 </script>
 
 <style scoped>
-    canvas {
-        background-color: bisque;
-    }
 </style>
