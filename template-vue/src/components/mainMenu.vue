@@ -74,7 +74,7 @@ body {
 #games {
   display: flex;
   flex: 1;
-  float: center;
+  margin: auto;
   flex-direction: row;
   justify-content: space-around;
 }
