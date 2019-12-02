@@ -43,7 +43,14 @@
 </template>
 
 <script>
+import { AppAUTH } from "../db-init.js";
 export default {
+  data: function() {
+        return {
+            user: [],
+            componentKey: 0,
+        };
+  },
   methods: {
     proBtn() {
       this.$router.push({ path: "/profile" });
@@ -60,6 +67,26 @@ export default {
     flaBtn() {
       this.$router.push({ path: "/flappy" });
     }
+  },
+  mounted()
+  {
+    let userinfo = AppAUTH.currentUser;
+        this.user = userinfo;
+        if (this.user.displayName == null) {
+            AppAUTH.currentUser
+                .updateProfile({
+                displayName: this.user.email.substring(0, this.user.email.indexOf('@')),
+                photoURL:
+                    "https://www.scirra.com/images/articles/windows-8-user-account.jpg"
+                })
+                .then(
+                function() {},
+                function(err) {
+                    // An error happened.
+                    alert("Error " + err);
+                }
+                );
+        }
   }
 };
 </script>

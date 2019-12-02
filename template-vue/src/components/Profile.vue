@@ -98,21 +98,6 @@ export default {
     beforeMount(){
         let userinfo = AppAUTH.currentUser;
         this.user = userinfo;
-        if (this.user.displayName == null) {
-            AppAUTH.currentUser
-                .updateProfile({
-                displayName: this.user.email.substring(0, this.user.email.indexOf('@')),
-                photoURL:
-                    "https://www.scirra.com/images/articles/windows-8-user-account.jpg"
-                })
-                .then(
-                function() {},
-                function(err) {
-                    // An error happened.
-                    alert("Error " + err);
-                }
-                );
-        }
     },
     mounted() {
         //this.user.push(AppAUTH.currentUser);
