@@ -95,40 +95,30 @@ export default {
             testobj: []
         };
     },
-    mounted() {
-        //this.user.push(AppAUTH.currentUser);
+    beforeMount(){
         let userinfo = AppAUTH.currentUser;
         this.user = userinfo;
+        if (this.user.displayName == null) {
+            AppAUTH.currentUser
+                .updateProfile({
+                displayName: this.user.email.substring(0, this.user.email.indexOf('@')),
+                photoURL:
+                    "https://www.scirra.com/images/articles/windows-8-user-account.jpg"
+                })
+                .then(
+                function() {},
+                function(err) {
+                    // An error happened.
+                    alert("Error " + err);
+                }
+                );
+        }
+    },
+    mounted() {
+        //this.user.push(AppAUTH.currentUser);
+        
         AppDB.ref("Highscore").on("child_added", this.dataHandler);
         //this.pic = userinfo.photoURL;
-        if (this.user.displayName == null) {
-        AppAUTH.currentUser
-            .updateProfile({
-            displayName: this.user.email,
-            photoURL:
-                "https://www.scirra.com/images/articles/windows-8-user-account.jpg"
-            })
-            .then(
-            function() {},
-            function(err) {
-                // An error happened.
-                alert("Error " + err);
-            }
-            );
-        }
-
-        var cnv = this.$refs.cnvs;
-        var ctx = cnv.getContext("2d");
-        //cnv.width = 75;
-        //cnv.height = 50;
-        var bg = new Image();
-        bg.src = require("../assets/profileCard.png");
-
-        ctx.drawImage(bg, 30, 0, bg.width *.5, bg.height*.5);
-
-        ctx.fillStyle = "#000";
-        //ctx.font = "10px Astron";
-        ctx.fillText("Score: " + 10, 10, (cnv.height * .90));
     },
     methods:{
         update(){
@@ -138,19 +128,28 @@ export default {
             const item = snapshot.val();
             this.allScores.push({ ...item });
             if (item.Game == "Snake") {
-                this.snakeScores.push({ ...item });
-                this.snakeScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-                this.snakeScores = this.snakeScores.slice(0, 5);
+                if(item.User == this.user.email)
+                {    
+                    this.snakeScores.push({ ...item });
+                    this.snakeScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
+                    this.snakeScores = this.snakeScores.slice(0, 5);
+                }
             }
             if (item.Game == "Asteroids") {
-                this.asteroidScores.push({ ...item });
-                this.asteroidScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-                this.asteroidScores = this.asteroidScores.slice(0, 5);
+                if(item.User == this.user.email)
+                {    
+                    this.asteroidScores.push({ ...item });
+                    this.asteroidScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
+                    this.asteroidScores = this.asteroidScores.slice(0, 5);
+                }
             }
             if (item.Game == "FlappyBat") {
-                this.flapBatScores.push({ ...item });
-                this.flapBatScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-                this.flapBatScores = this.flapBatScores.slice(0, 5);
+                if(item.User == this.user.email)
+                {    
+                    this.flapBatScores.push({ ...item });
+                    this.flapBatScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
+                    this.flapBatScores = this.flapBatScores.slice(0, 5);
+                }
             }
         }
     }
