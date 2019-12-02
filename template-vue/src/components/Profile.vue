@@ -2,7 +2,7 @@
 <body>
   <span id="email">Email: {{this.user.email}}</span>
   <span id="name">Name: {{this.user.displayName}}</span>
-  <img v-bind:src="user.photoURL" height="360px" width="360px" ref="pic" />
+  <img v-bind:src="user.photoURL" height="120px" width="120px" ref="pic" />
 </body>
 </template>
 

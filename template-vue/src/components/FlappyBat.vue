@@ -87,8 +87,8 @@ export default {
     }
 
     //Load Images
-    bat.imageUp.src = require("../assets/FlappyBat/images/batUp.png");
-    bat.imageDown.src = require("../assets/FlappyBat/images/batDown.png");
+    bat.imageUp.src = require("../assets/FlappyBat/images/batUpNew.png");
+    bat.imageDown.src = require("../assets/FlappyBat/images/batDownNew.png");
 
     bg.far1.src = require("../assets/FlappyBat/images/bgFar.png");
     bg.middle1.src = require("../assets/FlappyBat/images/bgMiddle.png");
