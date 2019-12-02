@@ -1,9 +1,13 @@
 <template>
 <body>
-  <header>
-    <v-btn dark color="success" id="pro" @click="proBtn">Profile</v-btn>
-    <v-btn dark color="accent" id="lea" @click="leaBtn">Leaderboard</v-btn>
-  </header>
+  <v-row>
+    <v-col>
+      <v-btn dark color="success" id="pro" @click="proBtn">Profile</v-btn>
+    </v-col>
+    <v-col>
+      <v-btn dark color="accent" id="lea" @click="leaBtn">Leaderboard</v-btn>
+    </v-col>
+    </v-row>
 
   <div id="games">
     <v-row>
@@ -71,30 +75,38 @@ body {
   justify-content: space-around;
   text-align: center;
 }
-header {
-  height: 30vh;
-  padding-left: 2vh;
-  padding-right: 2vh;
-}
 #ast {
   float: center;
   font-size: 200%;
   padding-top: 5%;
   padding-bottom: 8%;
+  width: 250px;
+  height: 90px;
 }
 #sna {
   float: center;
   font-size: 200%;
   padding-top: 5%;
   padding-bottom: 8%;
+  width: 250px;
+  height: 90px;
 }
 #fla {
   float: center;
   font-size: 200%;
   padding-top: 5%;
   padding-bottom: 8%;
+  width: 250px;
+  height: 90px;
+}
+#pro {
+  float: left;
+  width: 225px;
+  font-size: 125%;
 }
 #lea{
     float:right;
+    width: 225px;
+    font-size: 125%;
 }
 </style>
