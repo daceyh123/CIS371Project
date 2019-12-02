@@ -59,6 +59,7 @@ export default {
 
     var fly = new Audio();
     var scor = new Audio();
+    var oof = new Audio();
 
     var pipe = [];
 
@@ -104,8 +105,9 @@ export default {
     pipeSouth.src = require("../assets/FlappyBat/images/pipeSouth.png");
 
     // Load Audio Files
-    fly.src = "audio/fly.mp3";
-    scor.src = "audio/score.wav";
+    fly.src = require("../assets/FlappyBat/audio/fly.mp3");
+    scor.src = require("../assets/FlappyBat/audio/score.wav");
+    oof.src = require("../assets/FlappyBat/audio/oof.wav");
 
     //Key Listener and Event
     document.addEventListener("keydown", moveUp);
@@ -210,6 +212,7 @@ export default {
               bat.y + 40 >= pipe[i].y + constant)) ||
           bat.y + 40 >= cnvs.height - ground.one.height
         ) {
+          oof.play();
           gameInProgress = false;
           GameOver();
           InstantiateVariables();
