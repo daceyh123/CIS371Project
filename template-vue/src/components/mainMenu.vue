@@ -10,29 +10,33 @@
     </v-row>
 
   <div id="games">
-    <v-row>
-      <v-col>
+    <v-col>
+      <v-row>
         <img src="../components/img/asteroids.jpg" height="90px" width="90px"/>
-      </v-col>
-      <v-col>
+      </v-row>
+      <br>
+      <v-row>
         <img src="../components/img/snake.png" height="90px" width="90px"/>
-      </v-col>
-      <v-col>
+      </v-row>
+      <br>
+      <v-row>
         <img src="../components/img/flappyBat.png" height="90px" width="90px"/>
-      </v-col>
-    </v-row>
+      </v-row>
+    </v-col>
 
-    <v-row>
-      <v-col>
+    <v-col>
+      <v-row>
         <v-btn id="ast" @click="astBtn">Asteroids</v-btn>
-      </v-col>
-      <v-col>
+      </v-row>
+      <br>
+      <v-row>
         <v-btn id="sna" @click="snaBtn">Snake</v-btn>
-      </v-col>
-      <v-col>
+      </v-row>
+      <br>
+      <v-row>
         <v-btn id="fla" @click="flaBtn">Flappy Bat</v-btn>
-      </v-col>
-    </v-row>
+      </v-row>
+    </v-col>
 
   </div>
 </body>
@@ -73,7 +77,6 @@ body {
   float: center;
   flex-direction: row;
   justify-content: space-around;
-  text-align: center;
 }
 #ast {
   float: center;
