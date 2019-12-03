@@ -23,77 +23,39 @@ import { AppAUTH } from "../db-init.js";
         // create unit
         const box = 32;
 
-        // load audio files
-        let dead = new Audio();
-        let eat = new Audio();
-        let up = new Audio();
-        let right = new Audio();
-        let left = new Audio();
-        let down = new Audio();
-
-        dead.src == "audio/dead.mp3";
-        eat.src == "audio/eat.mp3";
-        up.src == "audio/up.mp3";
-        right.src == "audio/right.mp3";
-        left.src == "audio/left.mp3";
-        down.src == "audio/down.mp3";
-
         // create the snake
-        let snake  = [];
+        var snake  = [];
+
+        // old head position
+        //var snakeX = snake[0].x;
+        //var snakeY = snake[0].y;
 
         snake[0] = {
             x : 9 * box,
             y : 10 * box
         };
 
+        // create score 
+        var score = 0;
+
+        //control the snake
+        var d = "Null";
+
         // create food
-        let food = {
+        var food = {
             x : Math.floor(Math.random() * 17 + 1) * box,
             y : Math.floor(Math.random() * 15 + 3) * box
         }
 
-        // create score 
-        let score = 0;
+        //var gameInProgress = true;
 
-        //control the snake
-        let d;
-
-        document.addEventListener("keydown",direction);
-
-        function direction(event) {
-            let key = event.keyCode;
-
-            if (key == 37 && d != "RIGHT") {
-                left.play();
-                d = "LEFT";
-            }
-            else if (key == 38 && d != "DOWN") {
-                d = "UP";
-                up.play()
-            }
-            else if (key == 39 && d != "LEFT") {
-                d = "RIGHT";
-                right.play();
-            }
-            else if (key == 40 && d != "UP") {
-                d = "DOWN";
-                down.play();
-            }
-        }
-
-        // check collision function
-        function collision(head,array) {
-            for (let i = 0; i < array.length; i++) {
-                if (head.x == array[i].x && head.y == array[i].y) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        // draw everyhting to canvas
-        function draw() {
-            ctx.drawImage(ground, 0 , 0);
+        function InstantiateVariables()
+        {
+            for(var i = 0; i < snake.length;i++) snake.pop();
+            snake[0] = {
+                x : 9 * box,
+                y : 10 * box
+            };
 
             for (let i = 0; i < snake.length; i++) {
                 ctx.fillStyle = (i == 0)? "green" : "white";
@@ -103,8 +65,48 @@ import { AppAUTH } from "../db-init.js";
                 ctx.strokeRect(snake[i].x, snake[i].y, box, box);
             }
 
-            ctx.drawImage(foodImg, food.x, food.y);
+            score = 0;
+            d="Null";
+        }
+        
+        document.addEventListener("keydown",direction);
 
+        function direction(event) {
+            let key = event.keyCode;
+
+            if (key == 37 && d != "RIGHT") {
+                
+                d = "LEFT";
+            }
+            else if (key == 38 && d != "DOWN") {
+                
+                d = "UP";
+            }
+            else if (key == 39 && d != "LEFT") {
+                
+                d = "RIGHT";
+            }
+            else if (key == 40 && d != "UP") {
+                
+                d = "DOWN";
+            }
+        }
+
+        function Game(){
+            Update();
+            Draw();
+        }
+        // check collision function
+        function collision(head,array) {
+            for (let i = 0; i < array.length; i++) {
+                if (head.x == array[i].x && head.y == array[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        function Update(){
+            
             // old head position
             let snakeX = snake[0].x;
             let snakeY = snake[0].y;
@@ -119,7 +121,6 @@ import { AppAUTH } from "../db-init.js";
             if (snakeX == food.x && snakeY == food.y) {
                 score++;
 
-                eat.play();
 
                 food = {
                     x : Math.floor(Math.random() * 17 + 1) * box,
@@ -139,17 +140,32 @@ import { AppAUTH } from "../db-init.js";
 
             // game over
             if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead,snake)) {
-                clearInterval(game);
-                dead.play();
+                //clearInterval(game);
                 if(score > 0){
                 var user = AppAUTH.currentUser;
                 AppDB.ref("Highscore")
                 .push()
                 .set({Game: "Snake", User: user.displayName, Score: score, Email: user.email});
                 }
+                InstantiateVariables();
             }
 
-            snake.unshift(newHead);
+            else snake.unshift(newHead);
+
+        }
+        // draw everyhting to canvas
+        function Draw() {
+            ctx.drawImage(ground, 0 , 0);
+
+            for (let i = 0; i < snake.length; i++) {
+                ctx.fillStyle = (i == 0)? "green" : "white";
+                ctx.fillRect(snake[i].x, snake[i].y, box, box);
+
+                ctx.strokeStyle = "red";
+                ctx.strokeRect(snake[i].x, snake[i].y, box, box);
+            }
+
+            ctx.drawImage(foodImg, food.x, food.y);
 
             ctx.fillStyle = "white";
             ctx.font = "45px Changa one";
@@ -157,7 +173,7 @@ import { AppAUTH } from "../db-init.js";
         }
 
         // call draw funtion every 100 ms
-        let game = setInterval(draw,100);
+        setInterval(Game,100);
         },
         methods: {
         }
