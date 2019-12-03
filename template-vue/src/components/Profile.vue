@@ -147,8 +147,11 @@ export default {
                         alert("Error " + err);
                     }
                     );
-                this.newName = "";
-                this.newPhoto = "";
+                    document.getElementById("profPic").src = this.newPhoto;
+                    document.getElementById("name").innerHTML = this.newName;
+                    this.newName = "";
+                    this.newPhoto = "";
+                
             }
         },
         cancel(){
