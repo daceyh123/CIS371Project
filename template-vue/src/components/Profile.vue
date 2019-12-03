@@ -1,8 +1,8 @@
 <template>
     <div>
         <header>
-            <img id="profPic" v-bind:src="user.photoURL" height="120px" width="120px" ref="pic" />
-            <span id="name">{{this.user.displayName}}</span>
+            <img :key="componentKey" v-if="renderComponent" id="profPic" v-bind:src="this.user.photoURL" height="120px" width="120px" ref="pic" />
+            <span :key="componentKey" v-if="renderComponent" id="name">{{this.user.displayName}}</span>
         </header>
         <v-tabs color="primary">
             <v-tab>Asteroids</v-tab>
@@ -63,15 +63,31 @@
                 </v-simple-table>
             </v-tab-item>
         </v-tabs>
-        <v-bottom-sheet v-model="sheet">
-      <template v-slot:activator="{ on }">
-        <v-btn color="accent" dark v-on="on">Update Info</v-btn>
+        <div></div>
+        <v-bottom-sheet v-model="sheet" :inset="true" overlay-color="secondary" >
+      <template id="foot" v-slot:activator="{ on }">
+        <v-btn color="accent" dark v-on="on" id="updateBtn" absolute=true bottom=true>Update Info</v-btn>
       </template>
-      <v-sheet class="text-center" height="200px">
-        <v-btn class="mt-6" flat color="red" @click="sheet = !sheet">cancel</v-btn>
-        <v-btn class="mt-6" flat color="success" @click="sheet = !sheet">submit</v-btn>
-        <div>The basic usage of v-bottom-sheet. Almost any content can be placed inside this component</div>
-      </v-sheet>
+        <v-list>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-text-field v-model="newName" :rules="nameRules" label="New User Name" counter=15></v-text-field>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-text-field v-model="newPhoto" :rules="photoRules" label="Profile Picture (URL)" counter=300></v-text-field>
+                </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-btn id="can" class="mt-6" flat color="red" @click=cancel>cancel</v-btn>
+                </v-list-item-content>
+                <v-list-item-content>
+                    <v-btn class="mt-6" flat color="success" @click=update>submit</v-btn>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>  
     </v-bottom-sheet>
     </div>
 </template>
@@ -85,7 +101,12 @@ export default {
         return {
             user: [],
             componentKey: 0,
+            renderComponent: true,
             sheet: false,
+            newName: "",
+            newPhoto: "",
+            nameRules: [v => v.length <= 15 || 'Max 15 characters'],
+            photoRules: [v => v.length <= 300 || 'Max 300 characters'],
             allScores: [],
             snakeScores: [],
             asteroidScores: [],
@@ -107,7 +128,33 @@ export default {
     },
     methods:{
         update(){
-
+            if(this.newName.length <= 15 && this.newPhoto.length <= 300)
+            {
+                this.sheet = !this.sheet;
+                if(this.newName=="") this.newName=this.user.displayName;
+                if(this.newPhoto=="") this.newPhoto=this.user.photoURL;
+                AppAUTH.currentUser
+                    .updateProfile({
+                    displayName: this.newName,
+                    photoURL: this.newPhoto
+                    })
+                    .then(
+                    function() {
+                        
+                    },
+                    function(err) {
+                        // An error happened.
+                        alert("Error " + err);
+                    }
+                    );
+                this.newName = "";
+                this.newPhoto = "";
+            }
+        },
+        cancel(){
+            this.sheet = !this.sheet;
+            this.newName = "";
+            this.newPhoto = "";
         },
         dataHandler(snapshot) {
             const item = snapshot.val();
@@ -136,7 +183,7 @@ export default {
                     this.flapBatScores = this.flapBatScores.slice(0, 5);
                 }
             }
-        }
+        },
     }
     };
 </script>
@@ -155,8 +202,20 @@ export default {
         font-size: 400%;
         padding-top: 2vh;
         float: right;
+        margin-left:2vh;
+    }
+    #profPic{
+        margin-right:2vh;
     }
     #uBtn{
         justify-self: baseline;
+    }
+    #text-center {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    #updateBtn{
+        margin-bottom: 7vh;
+        justify-self: center;
     }
 </style>
