@@ -219,6 +219,7 @@ export default {
     }
     #updateBtn{
         margin-bottom: 7vh;
+        margin-left: 32vh;
         justify-self: center;
     }
 </style>
