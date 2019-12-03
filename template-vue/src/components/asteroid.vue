@@ -153,7 +153,7 @@ export default {
             var user = AppAUTH.currentUser;
             AppDB.ref("Highscore")
             .push()
-            .set({Game: "Asteroids", User: user.displayName, Score: score});
+            .set({Game: "Asteroids", User: user.displayName, Score: score, Email: user.email});
             }
         }
 

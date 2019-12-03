@@ -21,7 +21,7 @@
                     <tr v-for="(asteroidScores,pos) in asteroidScores" :key="pos">
                         <td v-bind:ref="pos">{{pos +1 }}</td>
                         <td>{{asteroidScores.Score}}</td>
-                        <td>{{asteroidScores.User.substring(0, asteroidScores.User.indexOf('@'))}}</td>
+                        <td>{{asteroidScores.User}}</td>
                     </tr>
                     </tbody>
                 </v-simple-table>
@@ -39,7 +39,7 @@
                     <tr v-for="(snakeScores,pos) in snakeScores" :key="pos">
                         <td v-bind:ref="pos">{{pos +1 }}</td>
                         <td>{{snakeScores.Score}}</td>
-                        <td>{{snakeScores.User.substring(0, snakeScores.User.indexOf('@'))}}</td>
+                        <td>{{snakeScores.User}}</td>
                     </tr>
                     </tbody>
                 </v-simple-table>
@@ -57,7 +57,7 @@
                     <tr v-for="(flapBatScores,pos) in flapBatScores" :key="pos">
                         <td v-bind:ref="pos">{{pos +1 }}</td>
                         <td>{{flapBatScores.Score}}</td>
-                        <td>{{flapBatScores.User.substring(0, flapBatScores.User.indexOf('@'))}}</td>
+                        <td>{{flapBatScores.User}}</td>
                     </tr>
                     </tbody>
                 </v-simple-table>
@@ -163,7 +163,7 @@ export default {
             const item = snapshot.val();
             this.allScores.push({ ...item });
             if (item.Game == "Snake") {
-                if(item.User == this.user.email)
+                if(item.Email == this.user.email)
                 {    
                     this.snakeScores.push({ ...item });
                     this.snakeScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
@@ -171,7 +171,7 @@ export default {
                 }
             }
             if (item.Game == "Asteroids") {
-                if(item.User == this.user.email)
+                if(item.Email == this.user.email)
                 {    
                     this.asteroidScores.push({ ...item });
                     this.asteroidScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
@@ -179,7 +179,7 @@ export default {
                 }
             }
             if (item.Game == "FlappyBat") {
-                if(item.User == this.user.email)
+                if(item.Email == this.user.email)
                 {    
                     this.flapBatScores.push({ ...item });
                     this.flapBatScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
