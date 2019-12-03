@@ -33,7 +33,7 @@ export default {
         const SHOW_BOUNDING = false; // show or hide collision bounding
         const SHOW_CENTRE_DOT = false; // show or hide ship's centre dot
         const MUSIC_ON = true;
-        const SOUND_ON = true;
+        //const SOUND_ON = true;
         const TEXT_FADE_TIME = 2.5; // text fade time in seconds
         const TEXT_SIZE = 40; // text font height in pixels
 
@@ -42,10 +42,10 @@ export default {
         var ctx = canv.getContext("2d");
 
         // set up sound effects
-        var fxExplode = new Sound("sounds/explode.m4a");
-        var fxHit = new Sound("sounds/hit.m4a", 5);
-        var fxLaser = new Sound("sounds/laser.m4a", 5, 0.5);
-        var fxThrust = new Sound("sounds/thrust.m4a");
+        //var fxExplode = new Sound("sounds/explode.m4a");
+        //var fxHit = new Sound("sounds/hit.m4a", 5);
+        //var fxLaser = new Sound("sounds/laser.m4a", 5, 0.5);
+        //var fxThrust = new Sound("sounds/thrust.m4a");
         
         // set up the music
         var music = new Music("sounds/music-low.m4a", "sounds/music-high.m4a");
@@ -103,7 +103,7 @@ export default {
 
             // destroy the asteroid
             roids.splice(index, 1);
-            fxHit.play();
+            //fxHit.play();
 
             // calculate the ratio of remaining asteroids to determine music tempo
             roidsLeft--;
@@ -142,7 +142,7 @@ export default {
 
         function explodeShip() {
             ship.explodeTime = Math.ceil(SHIP_EXPLODE_DUR * FPS);
-            fxExplode.play();
+            //fxExplode.play();
         }
 
         function gameOver() {
@@ -153,7 +153,7 @@ export default {
             var user = AppAUTH.currentUser;
             AppDB.ref("Highscore")
             .push()
-            .set({Game: "Asteroids", User: user.email, Score: score});
+            .set({Game: "Asteroids", User: user.displayName, Score: score});
             }
         }
 
@@ -278,7 +278,7 @@ export default {
                     dist: 0,
                     explodeTime: 0
                 });
-                fxLaser.play();
+                //fxLaser.play();
             }
 
             // prevent further shooting
@@ -309,7 +309,7 @@ export default {
 
             this.tick = function() {
                 if (this.beatTime == 0) {
-                    this.play();
+                    //this.play();
                     this.beatTime = Math.ceil(this.tempo * FPS);
                 } else {
                     this.beatTime--;
@@ -317,7 +317,7 @@ export default {
             }
         }
 
-        function Sound(src, maxStreams = 1, vol = 1.0) {
+        /*function Sound(src, maxStreams = 1, vol = 1.0) {
             this.streamNum = 0;
             this.streams = [];
             for (let i = 0; i < maxStreams; i++) {
@@ -328,7 +328,7 @@ export default {
             this.play = function() {
                 if (SOUND_ON) {
                     this.streamNum = (this.streamNum + 1) % maxStreams;
-                    this.streams[this.streamNum].play();
+                    //this.streams[this.streamNum].play();
                 }
             }
 
@@ -336,7 +336,7 @@ export default {
                 this.streams[this.streamNum].pause();
                 this.streams[this.streamNum].currentTime = 0;
             }
-        }
+        }*/
 
         function update() {
             var blinkOn = ship.blinkNum % 2 == 0;
@@ -393,7 +393,7 @@ export default {
             if (ship.thrusting && !ship.dead) {
                 ship.thrust.x += SHIP_THRUST * Math.cos(ship.a) / FPS;
                 ship.thrust.y -= SHIP_THRUST * Math.sin(ship.a) / FPS;
-                fxThrust.play();
+                //fxThrust.play();
 
                 // draw the thruster
                 if (!exploding && blinkOn) {
@@ -421,7 +421,7 @@ export default {
                 // apply friction (slow the ship down when not thrusting)
                 ship.thrust.x -= FRICTION * ship.thrust.x / FPS;
                 ship.thrust.y -= FRICTION * ship.thrust.y / FPS;
-                fxThrust.stop();
+                //fxThrust.stop();
             }
             
             // draw the triangular ship

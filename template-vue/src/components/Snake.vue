@@ -145,7 +145,7 @@ import { AppAUTH } from "../db-init.js";
                 var user = AppAUTH.currentUser;
                 AppDB.ref("Highscore")
                 .push()
-                .set({Game: "Snake", User: user.email, Score: score});
+                .set({Game: "Snake", User: user.displayName, Score: score});
                 }
             }
 

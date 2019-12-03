@@ -269,7 +269,7 @@ export default {
         var user = AppAUTH.currentUser;
         AppDB.ref("Highscore")
           .push()
-          .set({ Game: "FlappyBat", User: user.email, Score: score });
+          .set({ Game: "FlappyBat", User: user.displayName, Score: score });
       }
     }
   },

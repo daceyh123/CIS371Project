@@ -14,7 +14,7 @@
           <tr v-for="(snakeScores,pos) in snakeScores" :key="pos">
             <td v-bind:ref="pos">{{pos +1 }}</td>
             <td>{{snakeScores.Score}}</td>
-            <td>{{snakeScores.User.substring(0, snakeScores.User.indexOf('@'))}}</td>
+            <td>{{snakeScores.User}}</td>
           </tr>
         </tbody>
       </v-simple-table>
@@ -33,7 +33,7 @@
           <tr v-for="(asteroidScores,pos) in asteroidScores" :key="pos">
             <td v-bind:ref="pos">{{pos +1 }}</td>
             <td>{{asteroidScores.Score}}</td>
-            <td>{{asteroidScores.User.substring(0, asteroidScores.User.indexOf('@'))}}</td>
+            <td>{{asteroidScores.User}}</td>
           </tr>
         </tbody>
       </v-simple-table>
@@ -52,7 +52,7 @@
           <tr v-for="(flapBatScores,pos) in flapBatScores" :key="pos">
             <td v-bind:ref="pos">{{pos +1 }}</td>
             <td>{{flapBatScores.Score}}</td>
-            <td>{{flapBatScores.User.substring(0, flapBatScores.User.indexOf('@'))}}</td>
+            <td>{{flapBatScores.User}}</td>
           </tr>
         </tbody>
       </v-simple-table>
