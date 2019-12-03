@@ -57,9 +57,9 @@ export default {
     var gameInProgress = false;
     var keypressed = false;
 
-    var fly = new Audio();
-    var scor = new Audio();
-    var oof = new Audio();
+    //var fly = new Audio();
+    //var scor = new Audio();
+    //var oof = new Audio();
 
     var pipe = [];
 
@@ -105,9 +105,9 @@ export default {
     pipeSouth.src = require("../assets/FlappyBat/images/pipeSouth.png");
 
     // Load Audio Files
-    fly.src = require("../assets/FlappyBat/audio/fly.mp3");
-    scor.src = require("../assets/FlappyBat/audio/score.wav");
-    oof.src = require("../assets/FlappyBat/audio/oof.wav");
+    //fly.src = require("../assets/FlappyBat/audio/fly.mp3");
+    //scor.src = require("../assets/FlappyBat/audio/score.wav");
+    //oof.src = require("../assets/FlappyBat/audio/oof.wav");
 
     //Key Listener and Event
     document.addEventListener("keydown", moveUp);
@@ -119,15 +119,15 @@ export default {
       if (gameInProgress) {
         if (keypressed == false) {
           bat.velocity = bat.velocityJump;
-          fly.currentTime = 0;
-          fly.play();
+          //fly.currentTime = 0;
+          //fly.play();
           keypressed = true;
         }
       } else {
         gameInProgress = true;
         bat.velocity = bat.velocityJump;
-        fly.currentTime = 0;
-        fly.play();
+        // fly.currentTime = 0;
+        //fly.play();
       }
     }
 
@@ -197,7 +197,7 @@ export default {
 
         if (pipe[i].x == 5) {
           score++;
-          scor.play();
+          //scor.play();
         }
       }
     }
@@ -212,7 +212,7 @@ export default {
               bat.y + 40 >= pipe[i].y + constant)) ||
           bat.y + 40 >= cnvs.height - ground.one.height
         ) {
-          oof.play();
+          //oof.play();
           gameInProgress = false;
           GameOver();
           InstantiateVariables();
