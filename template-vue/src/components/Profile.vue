@@ -167,7 +167,7 @@ export default {
                 {    
                     this.snakeScores.push({ ...item });
                     this.snakeScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-                    this.snakeScores = this.snakeScores.slice(0, 5);
+                    this.snakeScores = this.snakeScores.slice(0, 3);
                 }
             }
             if (item.Game == "Asteroids") {
@@ -175,7 +175,7 @@ export default {
                 {    
                     this.asteroidScores.push({ ...item });
                     this.asteroidScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-                    this.asteroidScores = this.asteroidScores.slice(0, 5);
+                    this.asteroidScores = this.asteroidScores.slice(0, 3);
                 }
             }
             if (item.Game == "FlappyBat") {
@@ -183,7 +183,7 @@ export default {
                 {    
                     this.flapBatScores.push({ ...item });
                     this.flapBatScores.sort((a, b) => (a.Score < b.Score ? 1 : -1));
-                    this.flapBatScores = this.flapBatScores.slice(0, 5);
+                    this.flapBatScores = this.flapBatScores.slice(0, 3);
                 }
             }
         },
