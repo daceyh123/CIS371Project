@@ -108,6 +108,7 @@ export default {
 #borderB {
   grid-area: 3 / 1 / 3 / 4;
   background-color: rgb(22, 22, 22);
+  text-align: center;
 }
 #main {
   float: left;
@@ -139,9 +140,11 @@ export default {
   float:left;
 }
 #cent{
-  margin-left: 26vw;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 150%;
 }
-@media (max-width:845px){
+@media (max-width:1300px){
   .bl{
     display:none;
   }

@@ -65,7 +65,7 @@
         </v-tabs>
         <div></div>
         <v-bottom-sheet v-model="sheet" :inset="true" overlay-color="secondary" >
-      <template id="foot" v-slot:activator="{ on }">
+      <template v-slot:activator="{ on }">
         <v-btn color="accent" dark v-on="on" id="updateBtn" absolute=true bottom=true>Update Info</v-btn>
       </template>
         <v-list>
@@ -219,7 +219,12 @@ export default {
     }
     #updateBtn{
         margin-bottom: 7vh;
-        margin-left: 27vh;
-        justify-self: center;
+        padding-left:33vh;
+        padding-right: 33vh;
+        margin-left: .5vh;
+        /*
+        margin-right: auto;
+        justify-self: center; */
     }
+
 </style>
