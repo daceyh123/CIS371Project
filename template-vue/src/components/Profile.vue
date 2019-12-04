@@ -202,7 +202,7 @@ export default {
         padding-bottom: 5vh;
     }
     #name{
-        font-size: 400%;
+        font-size: 300%;
         padding-top: 2vh;
         float: right;
         margin-left:2vh;
@@ -219,7 +219,7 @@ export default {
     }
     #updateBtn{
         margin-bottom: 7vh;
-        margin-left: 32vh;
+        margin-left: 27vh;
         justify-self: center;
     }
 </style>

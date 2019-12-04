@@ -2,8 +2,8 @@
 <v-app>
   <v-content>
     <div id="base">
-      <body id="borderT">The Dundies Arcade</body>
-      <body id="borderR"></body>
+      <body id="borderT"><img id="left" height="27px" src="./assets/glasses.png"/>The Dundies Arcade<img id="right" height="27px" src="./assets/glasses.png"/></body>
+      <body id="borderR"><img class="bl" id="bearr" src="./assets/battlestar.png"/></body>
       <v-layout row wrap align-center space-around>
         <v-flex>
           <transition name="component-fade" mode="out-in" appear>
@@ -11,7 +11,7 @@
           </transition>
         </v-flex>
       </v-layout>
-      <body id="borderL"></body>
+      <body id="borderL"><img class="bl" id="bearl" src="./assets/battlestar.png"/></body>
       <body id="borderB">
         <v-btn
           id="sign"
@@ -20,6 +20,7 @@
           @click="signOutBtn"
           v-show="isLoggedIn === true"
         >Sign out</v-btn>
+        <span id="cent">Bears. Beets. Battlestar Galactica.</span>
         <v-btn
           id="main"
           dark
@@ -41,7 +42,7 @@ export default {
   data: function() {
     return {
       isLoggedIn: false,
-      dialog: false
+      dialog: false,
     };
   },
   methods: {
@@ -69,12 +70,20 @@ export default {
   font-size: 50em;
 }
 
+#left{
+  margin-right: 1vh;
+}
+
+#right{
+  margin-left: 1vh;
+}
+
 #base {
   min-width: 100vw;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: auto 87vh auto;
-  grid-template-rows: 8vh 87vh 5vh;
+  grid-template-columns: auto 85vh auto;
+  grid-template-rows: 9vh 85vh 6vh;
 
   font-family: "Astron";
 }
@@ -119,5 +128,25 @@ export default {
 .component-fade-enter,
 .component-fade-leave-to {
   opacity: 0;
+}
+.bl{
+  height: 65vh
+}
+#bearl{
+  float:right;
+}
+#bearr{
+  float:left;
+}
+#cent{
+  margin-left: 26vw;
+}
+@media (max-width:845px){
+  .bl{
+    display:none;
+  }
+  #cent{
+    display:none;
+  }
 }
 </style>

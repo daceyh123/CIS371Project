@@ -1,6 +1,6 @@
 <template>
 <body>
-  <v-row>
+  <v-row id="btns">
     <v-col>
       <v-btn dark color="success" id="pro" @click="proBtn">Profile</v-btn>
     </v-col>
@@ -134,9 +134,10 @@ body {
   width: 225px;
   font-size: 125%;
 }
-#lea{
+#lea{ 
     float:right;
     width: 225px;
     font-size: 125%;
 }
+
 </style>
