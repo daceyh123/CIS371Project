@@ -24,5 +24,9 @@ const routeTable = [
     //{ path: "/budget", component: Budget }
 ];
 
-const AppRouter = new VueRouter({ routes: routeTable, mode: "history" });
+const AppRouter = new VueRouter({ routes: routeTable, mode: "history",
+base: process.env.NODE_ENV === "production"
+     ? "/DundiesArcade/"
+     : "/"
+});
 export { AppRouter };
