@@ -82,8 +82,8 @@ export default {
   min-width: 100vw;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: auto 85vh auto;
-  grid-template-rows: 9vh 85vh 6vh;
+  grid-template-columns: auto 87vh auto;
+  grid-template-rows: 8vh 87vh 5vh;
 
   font-family: "Astron";
 }
