@@ -219,10 +219,11 @@ export default {
     }
     #updateBtn{
         margin-bottom: 7vh;
+        /*
         padding-left:33vh;
         padding-right: 33vh;
         margin-left: .5vh;
-        /*
+        
         margin-right: auto;
         justify-self: center; */
     }
